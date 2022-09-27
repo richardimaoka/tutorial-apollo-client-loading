@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from "apollo-server";
 import * as fs from "fs";
 import { Query, Resolvers } from "./generated/graphql";
+import { setTimeout } from "timers/promises";
 
 const typeDefs = gql`
   ${fs.readFileSync(__dirname.concat("/../schema.gql"), "utf8")}
@@ -13,6 +14,10 @@ interface LoadingDataContext {
 const resolvers: Resolvers<LoadingDataContext> = {
   Query: {
     hello: async (_parent, _args, context, _info) => {
+      console.log("waiting started");
+      await setTimeout(3000, null);
+      console.log("waiting ended");
+
       return context.Query.hello;
     },
     search: async (_parent, _args, context, _info) => {
