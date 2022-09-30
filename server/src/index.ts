@@ -14,9 +14,9 @@ interface LoadingDataContext {
 const resolvers: Resolvers<LoadingDataContext> = {
   Query: {
     hello: async (_parent, _args, context, _info) => {
-      console.log("waiting started");
-      await setTimeout(3000, null);
-      console.log("waiting ended");
+      // console.log("waiting started");
+      // await setTimeout(3000, null);
+      // console.log("waiting ended");
 
       return context.Query.hello;
     },
