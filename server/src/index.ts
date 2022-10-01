@@ -14,13 +14,12 @@ interface LoadingDataContext {
 const resolvers: Resolvers<LoadingDataContext> = {
   Query: {
     hello: async (_parent, _args, context, _info) => {
-      // console.log("waiting started");
-      // await setTimeout(3000, null);
-      // console.log("waiting ended");
-
       return context.Query.hello;
     },
     search: async (_parent, _args, context, _info) => {
+      console.log("waiting started");
+      await setTimeout(3000, null);
+      console.log("waiting ended");
       return context.Query.search;
     },
   },
@@ -33,6 +32,9 @@ const resolvers: Resolvers<LoadingDataContext> = {
     },
     department: async (parent, _args, _content, _info) => {
       return parent.department;
+    },
+    picturePath: async (parent, _args, _content, _info) => {
+      return parent.picturePath;
     },
   },
 };
