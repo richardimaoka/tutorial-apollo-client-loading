@@ -2,6 +2,8 @@ import { gql } from "@apollo/client";
 import { EmployeeComponent } from "./EmployeeComponent";
 import { excludeNullFromArray } from "./excludeNullFromArray";
 import { Employee, useGetSearchResultQuery } from "./generated/graphql";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 //This is read by GraphQL codegen to generate types
 gql`
@@ -22,8 +24,12 @@ const SearchResultNonEmpty = ({ employees }: { employees: Employee[] }) => (
 
 export const SearchResult = () => {
   const { loading, error, data } = useGetSearchResultQuery();
-  if (loading) {
-    return <div>loading...</div>;
+  if (!loading) {
+    return (
+      <div>
+        <FontAwesomeIcon icon={faSpinner} size={"4x"} />
+      </div>
+    );
   } else if (error) {
     return <div>error happened</div>;
   } else if (!data || !data.search) {
