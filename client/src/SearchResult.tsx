@@ -27,7 +27,7 @@ export const SearchResult = () => {
   if (!loading) {
     return (
       <div>
-        <FontAwesomeIcon icon={faSpinner} size={"4x"} />
+        <FontAwesomeIcon icon={faSpinner} size={"4x"} spin={true} />
       </div>
     );
   } else if (error) {
