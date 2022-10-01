@@ -26,6 +26,7 @@ export type Employee = {
   department: Maybe<Scalars["String"]>;
   jobTitle: Maybe<Scalars["String"]>;
   name: Maybe<Scalars["String"]>;
+  picturePath: Maybe<Scalars["String"]>;
 };
 
 export type Query = {
@@ -43,6 +44,7 @@ export type EmployeeComponentFragment = {
   name: string | null;
   jobTitle: string | null;
   department: string | null;
+  picturePath: string | null;
 };
 
 export type GetSearchResultQueryVariables = Exact<{ [key: string]: never }>;
@@ -54,6 +56,7 @@ export type GetSearchResultQuery = {
     name: string | null;
     jobTitle: string | null;
     department: string | null;
+    picturePath: string | null;
   } | null> | null;
 };
 
@@ -62,6 +65,7 @@ export const EmployeeComponentFragmentDoc = gql`
     name
     jobTitle
     department
+    picturePath
   }
 `;
 export const GetSearchResultDocument = gql`

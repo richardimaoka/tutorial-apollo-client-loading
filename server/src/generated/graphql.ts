@@ -24,6 +24,7 @@ export type Employee = {
   department: Maybe<Scalars["String"]>;
   jobTitle: Maybe<Scalars["String"]>;
   name: Maybe<Scalars["String"]>;
+  picturePath: Maybe<Scalars["String"]>;
 };
 
 export type Query = {
@@ -168,6 +169,11 @@ export type EmployeeResolvers<
   >;
   jobTitle: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
   name: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
+  picturePath: Resolver<
+    Maybe<ResolversTypes["String"]>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

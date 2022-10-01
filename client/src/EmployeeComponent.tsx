@@ -8,6 +8,7 @@ export interface EmployeeComponentProps {
 export const EmployeeComponent = ({ fragment }: EmployeeComponentProps) => {
   return (
     <div style={{ display: "flex", columnGap: "20px", marginBottom: "10px" }}>
+      {fragment.picturePath ? <img src={fragment.picturePath} /> : <></>}
       <div>{fragment.name}</div>
       <div>{fragment.jobTitle}</div>
       <div>{fragment.department}</div>
@@ -20,5 +21,6 @@ EmployeeComponent.fragment = gql`
     name
     jobTitle
     department
+    picturePath
   }
 `;

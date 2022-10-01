@@ -7,4 +7,5 @@ type Employee {
   name: String
   jobTitle: String
   department: String
+  picturePath: String
 }
