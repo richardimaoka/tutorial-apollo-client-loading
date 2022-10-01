@@ -24,7 +24,7 @@ const SearchResultNonEmpty = ({ employees }: { employees: Employee[] }) => (
 
 export const SearchResult = () => {
   const { loading, error, data } = useGetSearchResultQuery();
-  if (!loading) {
+  if (loading) {
     return (
       <div>
         <FontAwesomeIcon icon={faSpinner} size={"4x"} spin={true} />
