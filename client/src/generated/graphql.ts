@@ -31,6 +31,7 @@ export type Employee = {
 
 export type Query = {
   __typename?: "Query";
+  employees: Maybe<Array<Maybe<Employee>>>;
   hello: Maybe<Scalars["String"]>;
   search: Maybe<Array<Maybe<Employee>>>;
 };

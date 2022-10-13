@@ -23,14 +23,11 @@ const useDefaultResolver: any = null;
 
 const resolvers: Resolvers = {
   Query: {
-    hello: async (_parent, _args, _context, _info) => {
-      return queryDataSync.hello;
-    },
-    search: async (_parent, _args, context, _info) => {
+    employees: async (_parent, _args, context, _info) => {
       console.log("waiting started");
       await setTimeout(3000, null);
       console.log("waiting ended");
-      return queryDataSync.search;
+      return queryDataSync.employees;
     },
   },
   Employee: useDefaultResolver, //this will use Apollo's default resolver

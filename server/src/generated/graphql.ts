@@ -29,12 +29,7 @@ export type Employee = {
 
 export type Query = {
   __typename?: "Query";
-  hello: Maybe<Scalars["String"]>;
-  search: Maybe<Array<Maybe<Employee>>>;
-};
-
-export type QuerySearchArgs = {
-  department: InputMaybe<Scalars["String"]>;
+  employees: Maybe<Array<Maybe<Employee>>>;
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -181,12 +176,10 @@ export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
 > = {
-  hello: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
-  search: Resolver<
+  employees: Resolver<
     Maybe<Array<Maybe<ResolversTypes["Employee"]>>>,
     ParentType,
-    ContextType,
-    Partial<QuerySearchArgs>
+    ContextType
   >;
 };
 
