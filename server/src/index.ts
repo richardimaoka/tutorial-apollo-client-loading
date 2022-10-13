@@ -2,6 +2,7 @@ import { ApolloServer, gql } from "apollo-server";
 import * as fs from "fs";
 import { Query, Resolvers } from "./generated/graphql";
 import { setTimeout } from "timers/promises";
+import { defaultFieldResolver } from "graphql";
 
 const typeDefs = gql`
   ${fs.readFileSync(__dirname.concat("/../schema.gql"), "utf8")}
@@ -10,6 +11,10 @@ const typeDefs = gql`
 interface LoadingDataContext {
   Query: Query;
 }
+
+// Hack to use Apollo's default resolver, while avoiding type errors with GraphQL codegen's auto-generated Resolver type
+// https://www.apollographql.com/docs/apollo-server/data/resolvers
+const useDefaultResolver: any = null;
 
 const resolvers: Resolvers<LoadingDataContext> = {
   Query: {
@@ -23,20 +28,7 @@ const resolvers: Resolvers<LoadingDataContext> = {
       return context.Query.search;
     },
   },
-  Employee: {
-    name: async (parent, _args, _content, _info) => {
-      return parent.name;
-    },
-    jobTitle: async (parent, _args, _content, _info) => {
-      return parent.jobTitle;
-    },
-    department: async (parent, _args, _content, _info) => {
-      return parent.department;
-    },
-    picturePath: async (parent, _args, _content, _info) => {
-      return parent.picturePath;
-    },
-  },
+  Employee: useDefaultResolver, //this will use Apollo's default resolver
 };
 
 const readJsonFile = async (relativeFileName: string): Promise<any> => {
