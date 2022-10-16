@@ -22,15 +22,15 @@ const SearchResultNonEmpty = ({ employees }: { employees: Employee[] }) => (
   </div>
 );
 
-export const SearchResult = () => {
+export const EmployeeListing = () => {
   const { loading, error, data } = useGetEmployeesQuery();
-  if (loading) {
+  if (loading)
     return (
       <div>
         <FontAwesomeIcon icon={faSpinner} size={"4x"} spin={true} />
       </div>
     );
-  } else if (error) {
+  if (error) {
     return <div>error happened</div>;
   } else if (!data || !data.employees) {
     return <div>error happened</div>;
