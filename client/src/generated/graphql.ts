@@ -32,12 +32,6 @@ export type Employee = {
 export type Query = {
   __typename?: "Query";
   employees: Maybe<Array<Maybe<Employee>>>;
-  hello: Maybe<Scalars["String"]>;
-  search: Maybe<Array<Maybe<Employee>>>;
-};
-
-export type QuerySearchArgs = {
-  department: InputMaybe<Scalars["String"]>;
 };
 
 export type EmployeeComponentFragment = {
@@ -48,11 +42,11 @@ export type EmployeeComponentFragment = {
   picturePath: string | null;
 };
 
-export type GetSearchResultQueryVariables = Exact<{ [key: string]: never }>;
+export type GetEmployeesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetSearchResultQuery = {
+export type GetEmployeesQuery = {
   __typename?: "Query";
-  search: Array<{
+  employees: Array<{
     __typename?: "Employee";
     name: string | null;
     jobTitle: string | null;
@@ -69,9 +63,9 @@ export const EmployeeComponentFragmentDoc = gql`
     picturePath
   }
 `;
-export const GetSearchResultDocument = gql`
-  query GetSearchResult {
-    search {
+export const GetEmployeesDocument = gql`
+  query GetEmployees {
+    employees {
       ...EmployeeComponent
     }
   }
@@ -79,51 +73,51 @@ export const GetSearchResultDocument = gql`
 `;
 
 /**
- * __useGetSearchResultQuery__
+ * __useGetEmployeesQuery__
  *
- * To run a query within a React component, call `useGetSearchResultQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetSearchResultQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetEmployeesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEmployeesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetSearchResultQuery({
+ * const { data, loading, error } = useGetEmployeesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetSearchResultQuery(
+export function useGetEmployeesQuery(
   baseOptions?: Apollo.QueryHookOptions<
-    GetSearchResultQuery,
-    GetSearchResultQueryVariables
+    GetEmployeesQuery,
+    GetEmployeesQueryVariables
   >
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetSearchResultQuery, GetSearchResultQueryVariables>(
-    GetSearchResultDocument,
+  return Apollo.useQuery<GetEmployeesQuery, GetEmployeesQueryVariables>(
+    GetEmployeesDocument,
     options
   );
 }
-export function useGetSearchResultLazyQuery(
+export function useGetEmployeesLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<
-    GetSearchResultQuery,
-    GetSearchResultQueryVariables
+    GetEmployeesQuery,
+    GetEmployeesQueryVariables
   >
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetSearchResultQuery,
-    GetSearchResultQueryVariables
-  >(GetSearchResultDocument, options);
+  return Apollo.useLazyQuery<GetEmployeesQuery, GetEmployeesQueryVariables>(
+    GetEmployeesDocument,
+    options
+  );
 }
-export type GetSearchResultQueryHookResult = ReturnType<
-  typeof useGetSearchResultQuery
+export type GetEmployeesQueryHookResult = ReturnType<
+  typeof useGetEmployeesQuery
 >;
-export type GetSearchResultLazyQueryHookResult = ReturnType<
-  typeof useGetSearchResultLazyQuery
+export type GetEmployeesLazyQueryHookResult = ReturnType<
+  typeof useGetEmployeesLazyQuery
 >;
-export type GetSearchResultQueryResult = Apollo.QueryResult<
-  GetSearchResultQuery,
-  GetSearchResultQueryVariables
+export type GetEmployeesQueryResult = Apollo.QueryResult<
+  GetEmployeesQuery,
+  GetEmployeesQueryVariables
 >;
