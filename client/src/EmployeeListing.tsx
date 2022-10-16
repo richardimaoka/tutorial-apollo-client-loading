@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EmployeeComponent } from "./EmployeeComponent";
-import { excludeNullFromArray } from "./excludeNullFromArray";
-import { Employee, useGetEmployeesQuery } from "./generated/graphql";
+import { useGetEmployeesQuery } from "./generated/graphql";
+import { nonNullArray } from "./nonNullArray";
 
 //This is read by GraphQL codegen to generate types
 gql`
@@ -13,14 +13,6 @@ gql`
     }
   }
 `;
-
-const SearchResultNonEmpty = ({ employees }: { employees: Employee[] }) => (
-  <div>
-    {employees.map((employee) => (
-      <EmployeeComponent fragment={employee} />
-    ))}
-  </div>
-);
 
 export const EmployeeListing = () => {
   const { loading, error, data } = useGetEmployeesQuery();
@@ -35,7 +27,13 @@ export const EmployeeListing = () => {
   } else if (!data || !data.employees) {
     return <div>error happened</div>;
   } else {
-    const employees = excludeNullFromArray<Employee>(data.employees);
-    return <SearchResultNonEmpty employees={employees} />;
+    const employees = nonNullArray(data.employees);
+    return (
+      <div>
+        {employees.map((employee) => (
+          <EmployeeComponent fragment={employee} />
+        ))}
+      </div>
+    );
   }
 };
