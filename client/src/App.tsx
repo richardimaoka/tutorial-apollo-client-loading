@@ -1,16 +1,26 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import React from "react";
+import logo from "./logo.svg";
 import "./App.css";
-import { EmployeeListing } from "./EmployeeListing";
 
-const client = new ApolloClient({
-  uri: "http://localhost:4000",
-  cache: new InMemoryCache(),
-});
-
-export const App = (): JSX.Element => {
+function App() {
   return (
-    <ApolloProvider client={client}>
-      <EmployeeListing />
-    </ApolloProvider>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
+
+export default App;
