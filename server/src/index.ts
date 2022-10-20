@@ -1,5 +1,6 @@
 import { ApolloServer, gql } from "apollo-server";
 import * as fs from "fs";
+import { setTimeout } from "timers/promises";
 import { Query, Resolvers } from "./generated/graphql";
 
 const typeDefs = gql`
@@ -22,6 +23,9 @@ const useDefaultResolver: any = null;
 const resolvers: Resolvers = {
   Query: {
     employees: async (_parent, _args, context, _info) => {
+      console.log("waiting started");
+      await setTimeout(3000, null);
+      console.log("waiting ended");
       return queryDataSync.employees;
     },
   },
